@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+
+
+
+
+{% block main-content %}
+
+    <h3>menu</h3>
+
+
+
+
+{% endblock %}
+
+
+{% block js %}
+
+    <script type='text/javascript'>
+        $(function () {
+            $('.main-nav-closed').removeClass('main-nav-closed').addClass('main-nav-opened');
+            $('.my_module').addClass('in');
+            $('.my_module_nav').addClass('in').css('display', 'block');
+            $('.general_module').addClass('in');
+            $('.general_object_nav').addClass('in').css('display', 'block');
+
+
+        })
+    </script>
+
+{% endblock %}

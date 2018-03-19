@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block main-content %}
+
+
+    <div>
+        <hr class='hr-double'/>
+
+        <h3 class="message"></h3>
+        <div class='row-fluid' id="table" style="display: none">
+
+            <div class='span12 box bordered-box orange-border' style='margin-bottom:0;'>
+                <div class='box-header red-background'>
+
+                    {% if request.session.Account_Type == '1' %}
+                        <div class='title'>
+                            请选择仓库
+                        </div>
+                        <select name="Store_id" id="">
+                            {% for row in Store_objs %}
+
+                                <option value="{{ row.id }}">{{ row.Status__Name }}--{{ row.Name }}</option>
+                            {% endfor %}
+                        </select>
+                    {% endif %}
+
+                    <button class="node_store">
+                        本仓库
+                    </button>
+                    <button class="all_store">
+                        所有仓库
+                    </button>
+                    <button class="all_leaf_node_store">
+                        叶子仓库
+                    </button>
+                    <div class='actions'>
+                        <a href="#" class="btn box-remove btn-mini btn-link"><i class='icon-remove'></i>
+                        </a>
+                        <a href="#" class="btn box-collapse btn-mini btn-link"><i></i>
+                        </a>
+                    </div>
+                    <!-- Button to trigger modal -->
+
+                    <a href="#myModal" role="button" class="btn add_btn" data-toggle="modal" style="margin-left: 60%"
+                    >添加</a>
+                    <a href="#mySearchModal" role="button" class="btn" data-toggle="modal" id="show_search_btn">搜索</a>
+                    <button role="button" class="btn all_search_btn">全部</button>
+
+
+                </div>
+
+                <div class='box-content box-no-padding'>
+                    <div class='responsive-table'>
+                        <div class='scrollable-area'>
+
+                            <table class=' table table-bordered table-striped'
+                                   style='margin-bottom:0;'>
+                                <thead class="table_title">
+
+                                </thead>
+                                <tbody class="table_data">
+
+
+                                </tbody>
+
+                            </table>
+
+
+                            <!-- Modal -->
+                            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"
+                                 aria-labelledby="myModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        ×
+                                    </button>
+                                    <h3 id="myModalLabel">操作</h3>
+                                </div>
+                                <div class="modal-body">
+
+                                    {% if request.session.Account_Type == '1' %}
+                                        <div class="form-group">
+                                            <label for="exampleInputPart">仓库</label>
+                                            <select name="Store_id_edit" id="">
+                                                {% for row in Store_objs %}
+                                                    <option value="{{ row.id }}">{{ row.Status__Name }}--{{ row.Name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    {% endif %}
+
+                                    <div class="form-group">
+                                        <label for="exampleInputPart">零件</label>
+                                        <select name="PartLive_id" id="">
+                                            {% for row in PartLive_objs %}
+                                                <option value="{{ row.id }}">{{ row.Part__Name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputQR_Code">数量</label>
+                                        <input type="text" class="form-control" name="Number">
+
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn close_modal" data-dismiss="modal" aria-hidden="true">关闭
+                                    </button>
+
+                                    <button type="button" class="btn btn-danger add_storeconpartlive">确认
+                                    </button>
+                                    <button type="button" class="btn btn-danger edit_storeconpartlive"
+                                            style="display: none">确认
+                                    </button>
+                                </div>
+                            </div>
+
+
+                            <!-- SearchModal -->
+
+
+                            <div id="mySearchModal" class="modal hide fade" tabindex="-1" role="dialog"
+                                 aria-labelledby="myModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"
+                                            aria-hidden="true">×
+                                    </button>
+                                    <h3 id="myModalLabel">搜索</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="exampleInputQR_Code">二维码</label>
+                                        <input type="text" class="form-control" name="PartLive__QR_Code"
+                                               placeholder="------无------">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputItemNO">物号</label>
+                                        <input type="text" class="form-control" name="PartLive__Part__ItemNO"
+                                               placeholder="------无------">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputName">名称</label>
+                                        <input type="text" class="form-control" name="PartLive__Part__Name"
+                                               placeholder="------无------">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn close_searchmodal" data-dismiss="modal" aria-hidden="true"
+                                    >关闭
+                                    </button>
+
+                                    <button class="btn btn-primary search_store">搜索</button>
+                                </div>
+                            </div>
+
+
+                            <!-- store_type -->
+                            <input type="text" style="display: none" value="node_store" class="store_type">
+
+
+                            {% csrf_token %}
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+{% endblock %}
+
+
+
+
+{% block js %}
+    <script src={% static '/javascripts/ients/ients_store.js' %} type='text/javascript'></script>
+
+    <script type='text/javascript'>
+        edit_partlive()
+
+
+    </script>
+{% endblock %}

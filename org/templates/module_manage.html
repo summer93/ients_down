@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block main-content %}
+
+    <h3>模块管理</h3>
+
+
+{% endblock %}
+
+{% block js %}
+    <script type='text/javascript'>
+        $(function () {
+            $('.main-nav-closed').removeClass('main-nav-closed').addClass('main-nav-opened');
+            $('.my_system').addClass('in');
+            $('.my_system_nav').addClass('in').css('display', 'block');
+
+
+        })
+    </script>
+
+
+
+{% endblock %}

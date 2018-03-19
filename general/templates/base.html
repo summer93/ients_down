@@ -1,0 +1,1295 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>{{ request.session.website_title }}</title>
+    <link rel="Shortcut Icon" href={% static '/images/avatar/mdsoft.ico' %}>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'/>
+
+    <!--[if lt IE 9]>
+    <script src={% static 'javascripts/html5shiv.js'%} type='text/javascript'></script>
+    <![endif]-->
+    <link href={% static '/stylesheets/bootstrap/bootstrap.css' %} media='all' rel='stylesheet' type='text/css'/>
+    <link href={% static '/stylesheets/bootstrap/bootstrap-responsive.css' %} media='all' rel='stylesheet'
+          type='text/css'/>
+    <!-- / jquery ui -->
+    <link href={% static '/stylesheets/jquery_ui/jquery-ui-1.10.0.custom.css' %} media='all' rel='stylesheet'
+          type='text/css'/>
+    <link href={% static '/stylesheets/jquery_ui/jquery.ui.1.10.0.ie.css' %} media='all' rel='stylesheet'
+          type='text/css'/>
+    <!-- / switch buttons -->
+    <link href={% static '/stylesheets/plugins/bootstrap_switch/bootstrap-switch.css' %} media='all' rel='stylesheet'
+          type='text/css'/>
+    <!-- / xeditable -->
+    <link href={% static '/stylesheets/plugins/xeditable/bootstrap-editable.css' %} media='all' rel='stylesheet'
+          type='text/css'/>
+    <link href={% static '/stylesheets/plugins/common/bootstrap-wysihtml5.css' %} media='all' rel='stylesheet'
+          type='text/css'/>
+    <!-- / wysihtml5 (wysywig) -->
+    <link href={% static '/stylesheets/plugins/common/bootstrap-wysihtml5.css' %} media='all' rel='stylesheet'
+          type='text/css'/>
+    <!-- / jquery file upload -->
+    <link href={% static '/stylesheets/plugins/jquery_fileupload/jquery.fileupload-ui.css' %} media='all'
+          rel='stylesheet' type='text/css'/>
+    <!-- / full calendar -->
+    <link href={% static '/stylesheets/plugins/fullcalendar/fullcalendar.css' %} media='all' rel='stylesheet'
+          type='text/css'/>
+    <!-- / select2 -->
+    <link href={% static '/stylesheets/plugins/select2/select2.css' %} media='all' rel='stylesheet' type='text/css'/>
+    <!-- / mention -->
+    <link href={% static '/stylesheets/plugins/mention/mention.css' %} media='all' rel='stylesheet' type='text/css'/>
+    <!-- / tabdrop (responsive tabs) -->
+    <link href={% static '/stylesheets/plugins/tabdrop/tabdrop.css' %} media='all' rel='stylesheet' type='text/css'/>
+    <!-- / jgrowl notifications -->
+    <link href={% static '/stylesheets/plugins/jgrowl/jquery.jgrowl.min.css' %} media='all' rel='stylesheet'
+          type='text/css'/>
+    <!-- / datatables -->
+    <link href={% static '/stylesheets/plugins/datatables/bootstrap-datatable.css' %} media='all' rel='stylesheet'
+          type='text/css'/>
+    <!-- / dynatrees (file trees) -->
+    <link href={% static '/stylesheets/plugins/dynatree/ui.dynatree.css' %} media='all' rel='stylesheet'
+          type='text/css'/>
+    <!-- / color picker -->
+    <link href={% static '/stylesheets/plugins/bootstrap_colorpicker/bootstrap-colorpicker.css' %} media='all'
+          rel='stylesheet' type='text/css'/>
+    <!-- / datetime picker -->
+    <link href={% static '/stylesheets/plugins/bootstrap_datetimepicker/bootstrap-datetimepicker.min.css' %} media='all'
+          rel='stylesheet' type='text/css'/>
+    <!-- / daterange picker) -->
+    <link href={% static '/stylesheets/plugins/bootstrap_daterangepicker/bootstrap-daterangepicker.css' %} media='all'
+          rel='stylesheet' type='text/css'/>
+    <!-- / flags (country flags) -->
+    <link href={% static '/stylesheets/plugins/flags/flags.css' %} media='all' rel='stylesheet' type='text/css'/>
+    <!-- / slider nav (address book) -->
+    <link href={% static '/stylesheets/plugins/slider_nav/slidernav.css' %} media='all' rel='stylesheet'
+          type='text/css'/>
+    <!-- / fuelux (wizard) -->
+    <link href={% static '/stylesheets/plugins/fuelux/wizard.css' %} media='all' rel='stylesheet' type='text/css'/>
+    <!-- / flatty theme -->
+    <link href={% static '/stylesheets/light-theme.css' %} id='color-settings-body-color' media='all' rel='stylesheet'
+          type='text/css'/>
+    <!-- / demo -->
+    <link href={% static '/stylesheets/demo.css' %} media='all' rel='stylesheet' type='text/css'/>
+    <!-- / jOrgChart -->
+    <link href={% static '/stylesheets/jquery.jOrgChart.css' %} media='all' rel='stylesheet' type='text/css'/>
+    <!-- 扩展css -->
+    {% block css %}{% endblock %}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+<body class='contrast-red main-nav-closed'>
+<header>
+
+    <div class='navbar'>
+        <div class='navbar-inner'>
+            <div class='container-fluid'>
+                <a class='brand' href='/'>
+                    <i class='icon-heart-empty'></i>
+                    {% if request.session.Company_Name %}
+                        <span class='hidden-phone'>{{ request.session.website_title }}--{{ request.session.Company_Name }}</span>
+                    {% else %}
+                        <span class='hidden-phone'>{{ request.session.website_title }}--未知</span>
+                    {% endif %}
+
+                </a>
+                <a class='toggle-nav btn pull-left' href='#'>
+                    <i class='icon-reorder'></i>
+
+                </a>
+
+
+                <ul class='nav pull-right'>
+                    <li class='dropdown light only-icon'>
+                        <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+                            <i class='icon-adjust'></i>
+                        </a>
+                        <ul class='dropdown-menu color-settings'>
+                            <li class='divider'></li>
+                            <li class='color-settings-contrast-color'>
+                                <div class='color-title'>Contrast color</div>
+                                <a href="#" data-change-to="contrast-red"><i class='icon-adjust text-red'></i>
+                                    Red
+                                    <small>(default)</small>
+                                </a>
+                                <a href="#" data-change-to="contrast-blue"><i class='icon-adjust text-blue'></i>
+                                    Blue
+                                </a>
+                                <a href="#" data-change-to="contrast-orange"><i class='icon-adjust text-orange'></i>
+                                    Orange
+                                </a>
+                                <a href="#" data-change-to="contrast-purple"><i class='icon-adjust text-purple'></i>
+                                    Purple
+                                </a>
+                                <a href="#" data-change-to="contrast-green"><i class='icon-adjust text-green'></i>
+                                    Green
+                                </a>
+                                <a href="#" data-change-to="contrast-muted"><i class='icon-adjust text-muted'></i>
+                                    Muted
+                                </a>
+                                <a href="#" data-change-to="contrast-fb"><i class='icon-adjust text-fb'></i>
+                                    Facebook
+                                </a>
+                                <a href="#" data-change-to="contrast-dark"><i class='icon-adjust text-dark'></i>
+                                    Dark
+                                </a>
+                                <a href="#" data-change-to="contrast-pink"><i class='icon-adjust text-pink'></i>
+                                    Pink
+                                </a>
+                                <a href="#" data-change-to="contrast-grass-green"><i
+                                        class='icon-adjust text-grass-green'></i>
+                                    Grass green
+                                </a>
+                                <a href="#" data-change-to="contrast-sea-blue"><i class='icon-adjust text-sea-blue'></i>
+                                    Sea blue
+                                </a>
+                                <a href="#" data-change-to="contrast-banana"><i class='icon-adjust text-banana'></i>
+                                    Banana
+                                </a>
+                                <a href="#" data-change-to="contrast-dark-orange"><i
+                                        class='icon-adjust text-dark-orange'></i>
+                                    Dark orange
+                                </a>
+                                <a href="#" data-change-to="contrast-brown"><i class='icon-adjust text-brown'></i>
+                                    Brown
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class='dropdown medium only-icon widget'>
+                        <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+                            <i class='icon-rss'></i>
+                            <div class='label'>5</div>
+                        </a>
+                        <ul class='dropdown-menu'>
+                            <li>
+                                <a href='#'>
+                                    <div class='widget-body'>
+                                        <div class='pull-left icon'>
+                                            <i class='icon-user text-success'></i>
+                                        </div>
+                                        <div class='pull-left text'>
+                                            John Doe signed up
+                                            <small class='muted'>just now</small>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class='divider'></li>
+                            <li>
+                                <a href='#'>
+                                    <div class='widget-body'>
+                                        <div class='pull-left icon'>
+                                            <i class='icon-inbox text-error'></i>
+                                        </div>
+                                        <div class='pull-left text'>
+                                            New Order #002
+                                            <small class='muted'>3 minutes ago</small>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class='divider'></li>
+                            <li>
+                                <a href='#'>
+                                    <div class='widget-body'>
+                                        <div class='pull-left icon'>
+                                            <i class='icon-comment text-warning'></i>
+                                        </div>
+                                        <div class='pull-left text'>
+                                            America Leannon commented Flatty with veeery long text.
+                                            <small class='muted'>1 hour ago</small>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class='divider'></li>
+                            <li>
+                                <a href='#'>
+                                    <div class='widget-body'>
+                                        <div class='pull-left icon'>
+                                            <i class='icon-user text-success'></i>
+                                        </div>
+                                        <div class='pull-left text'>
+                                            Jane Doe signed up
+                                            <small class='muted'>last week</small>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class='divider'></li>
+                            <li>
+                                <a href='#'>
+                                    <div class='widget-body'>
+                                        <div class='pull-left icon'>
+                                            <i class='icon-inbox text-error'></i>
+                                        </div>
+                                        <div class='pull-left text'>
+                                            New Order #001
+                                            <small class='muted'>1 year ago</small>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class='widget-footer'>
+                                <a href='#'>All notifications</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class='dropdown dark user-menu'>
+                        <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+                            {% if request.user.is_authenticated %}
+                                <img alt='Mila Kunis' height='23' style="border-radius:5px"
+                                     src={% static request.session.User_Avatar %} width='23'/>
+                            {% else %}
+                                <img alt='Mila Kunis' height='23' style="border-radius:5px"
+                                     src={% static 'images/avatar/default.png' %} width='23'/>
+                            {% endif %}
+
+
+
+                            <span class='user-name hidden-phone'>{{ request.user }}</span>
+                            <b class='caret'></b>
+                        </a>
+                        <ul class='dropdown-menu'>
+                            <li>
+                                <a href='{% url 'user_profile' %}'>
+                                    <i class='icon-user'></i>
+                                    Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a href='{% url 'user_settings' %}'>
+                                    <i class='icon-cog'></i>
+                                    Settings
+                                </a>
+                            </li>
+                            <li class='divider'></li>
+                            <li>
+                                <a href='{% url 'user_logout' %}'>
+                                    <i class='icon-signout'></i>
+                                    Sign out
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <form accept-charset="UTF-8" action="search_results.html" class="navbar-search pull-right hidden-phone"
+                      method="get"/>
+                <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;"/></div>
+                <button class="btn btn-link icon-search" name="button" type="submit"></button>
+                <input autocomplete="off" class="search-query span2" id="q_header" name="q" placeholder="Search..."
+                       type="text" value=""/>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
+<div id='wrapper'>
+    <div id='main-nav-bg'></div>
+    <nav class='' id='main-nav'>
+        <div class='navigation'>
+            <div class='search'>
+                <form accept-charset="UTF-8" action="search_results.html" method="get"/>
+                <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;"/></div>
+                <div class='search-wrapper'>
+                    <input autocomplete="off" class="search-query" id="q" name="q" placeholder="Search..." type="text"
+                           value=""/>
+                    <button class="btn btn-link icon-search" name="button" type="submit"></button>
+                </div>
+                </form>
+            </div>
+            <ul class='nav nav-stacked'>
+
+                <li class='active'>
+
+                    <a href='#' onclick="GoUrl('/MainTasks',this);return false;">
+
+                        <i class='icon-dashboard'></i>
+
+                        <span>主控制台</span>
+
+                    </a>
+
+                </li>
+                {% if request.user.is_authenticated %}
+                    <li>
+
+                        <a href='#' onclick="GoUrl('/MyTask',this);return false;">
+
+                            <i class=' icon-tasks'></i>
+
+                            <span>我的任务</span>
+                            <div class="label" id="user_unfinish_no">5</div>
+
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a class='dropdown-collapse ' href='#'>
+
+                            <i class='icon-magic'></i>
+
+                            <span>我的签审</span>
+                            <div class="label" id="user_unfinish_no">3</div>
+
+
+                            {#                        <i class='icon-angle-down angle-down'></i>#}
+
+                        </a>
+
+                        {#                    <ul class='nav nav-stacked'>#}
+                        {##}
+                        {#                        <li>#}
+                        {##}
+                        {#                            <a href='#' onclick="GoUrl('/MyPSign',this);return false;">#}
+                        {##}
+                        {#                                <i class='icon-tasks'></i>#}
+                        {##}
+                        {#                                <span>进度签审</span>#}
+                        {#                                <div class="label" id="user_psign_no">{{ psign_NO }}</div>#}
+                        {##}
+                        {#                            </a>#}
+                        {##}
+                        {#                        </li>#}
+                        {##}
+                        {#                        <li>#}
+                        {##}
+                        {#                            <a href='#' onclick="GoUrl('/MyTSign',this);return false;">#}
+                        {##}
+                        {#                                <i class='icon-align-justify'></i>#}
+                        {##}
+                        {#                                <span>任务签审</span>#}
+                        {#                                <div class="label" id="user_tsign_no">{{ tsign_NO }}</div>#}
+                        {##}
+                        {#                            </a>#}
+                        {##}
+                        {#                        </li>#}
+                        {##}
+                        {#                    </ul>#}
+
+                    </li>
+                    <li>
+                        <a href='#' onclick="GoUrl('/MyProject',this);return false;">
+                            <i class=' icon-tablet'></i>
+
+                            <span>我的项目</span>
+                        </a>
+                    </li>
+                    <li>
+
+                        <a class='dropdown-collapse ' href='#'>
+
+                            <i class='icon-lightbulb'></i>
+
+                            <span>我的功能</span>
+
+                            <i class='icon-angle-down angle-down'></i>
+
+                        </a>
+
+                        <ul class='nav nav-stacked'>
+
+                            <li>
+
+                                <a href='#' onclick="GoUrl('/MyProcess',this);return false;">
+
+                                    <i class=' icon-folder-open-alt'></i>
+
+                                    <span>文档管理</span>
+
+                                </a>
+
+                            </li>
+
+                            <li>
+
+                                <a href='#' onclick="GoUrl('/GanttMyProject',this);return false;">
+
+                                    <i class='icon-comments-alt'></i>
+
+                                    <span>消息管理</span>
+
+                                </a>
+
+                            </li>
+
+                            <li>
+
+                                <a href='#' onclick="GoUrl('/GanttMyProject',this);return false;">
+
+                                    <i class='icon-envelope'></i>
+
+                                    <span>邮件管理</span>
+
+                                </a>
+
+                            </li>
+
+                            <li>
+
+                                <a href='#' onclick="GoUrl('/GanttMyProject',this);return false;">
+
+                                    <i class='icon-tags'></i>
+
+                                    <span>标签管理</span>
+
+                                </a>
+
+                            </li>
+
+
+                        </ul>
+
+                    </li>
+                    <li>
+
+                        <a class='dropdown-collapse my_module' href='#'>
+
+                            <i class='icon-puzzle-piece'></i>
+
+                            <span>我的模块</span>
+
+                            <i class='icon-angle-down angle-down'></i>
+
+                        </a>
+
+                        <ul class='nav nav-stacked my_module_nav'>
+
+                            {% if '/general/' in request.session.Authority_list %}
+                                <li>
+                                    <a class='dropdown-collapse general_module' href='#'>
+                                        <i class='icon-puzzle-piece'></i>
+                                        <span>通用模块</span>
+                                        <i class='icon-angle-down angle-down'></i>
+
+                                    </a>
+                                    <ul class='nav nav-stacked general_object_nav'>
+                                        {% if '/general/objects/' in request.session.Authority_list %}
+                                            <li>
+                                                <a class='dropdown-collapse general_module_object' href='#'>
+                                                    <i class='icon-puzzle-piece'></i>
+                                                    <span>对象</span>
+                                                    <i class='icon-angle-down angle-down'></i>
+                                                </a>
+                                                <ul class='nav nav-stacked general_module_object_nav'>
+                                                    <li>
+                                                        <a class='' href='{% url 'module' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>Module</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'module_menu' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>ModuleMenu</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'module_interface' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>ModuleInterface</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'module_authority' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>ModuleAuthority</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'message' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>Message</span>
+
+                                                        </a>
+                                                    </li>
+
+
+                                                </ul>
+                                            </li>
+
+                                        {% endif %}
+
+                                        {% if '/general/interface/' in request.session.Authority_list %}
+                                            <li>
+                                                <a class='' href='{% url 'interface' %}'>
+                                                    <i class='icon-puzzle-piece'></i>
+                                                    <span>接口</span>
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                        {% if '/general/menu/' in request.session.Authority_list %}
+                                            <li>
+                                                <a class='' href='{% url 'menu' %}'>
+                                                    <i class='icon-puzzle-piece'></i>
+                                                    <span>菜单</span>
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+
+
+                                </li>
+                            {% endif %}
+
+
+                            {% if '/daily/' in request.session.Authority_list %}
+                                <li>
+
+                                    <a href='#' onclick="GoUrl('/GanttMyProject',this);return false;">
+
+                                        <i class='icon-puzzle-piece'></i>
+
+                                        <span>日常模块</span>
+
+                                    </a>
+
+                                </li>
+                            {% endif %}
+
+                            {% if '/plan/' in request.session.Authority_list %}
+                                <li>
+
+                                    <a href='#' onclick="GoUrl('/MyProcess',this);return false;">
+
+                                        <i class='icon-puzzle-piece'></i>
+
+                                        <span>计划模块</span>
+
+                                    </a>
+
+                                </li>
+                            {% endif %}
+
+                            {% if '/procuremnt/' in request.session.Authority_list %}
+                                <li>
+
+                                    <a href='#' onclick="GoUrl('/MyProcess',this);return false;">
+
+                                        <i class='icon-puzzle-piece'></i>
+
+                                        <span>采购模块</span>
+
+                                    </a>
+
+                                </li>
+                            {% endif %}
+
+                            {% if '/outsource/' in request.session.Authority_list %}
+                                <li>
+
+                                    <a href='#' onclick="GoUrl('/MyProcess',this);return false;">
+
+                                        <i class='icon-puzzle-piece'></i>
+
+                                        <span>外协模块</span>
+
+                                    </a>
+
+                                </li>
+                            {% endif %}
+
+                            {% if '/manufacture/' in request.session.Authority_list %}
+                                <li>
+
+                                    <a href='#' onclick="GoUrl('/MyProcess',this);return false;">
+
+                                        <i class='icon-puzzle-piece'></i>
+
+                                        <span>制造模块</span>
+
+                                    </a>
+
+                                </li>
+                            {% endif %}
+
+                            {% if '/checkout/' in request.session.Authority_list %}
+                                <li>
+
+                                    <a href='#' onclick="GoUrl('/GanttMyProject',this);return false;">
+
+                                        <i class='icon-puzzle-piece'></i>
+
+                                        <span>检验模块</span>
+
+                                    </a>
+
+                                </li>
+                            {% endif %}
+                            {% if '/store/' in request.session.Authority_list %}
+                                <li>
+
+                                    <a class='dropdown-collapse store_module' href='#'>
+
+                                        <i class='icon-puzzle-piece'></i>
+
+                                        <span>仓管模块</span>
+                                        <i class='icon-angle-down angle-down'></i>
+
+                                    </a>
+                                    <ul class='nav nav-stacked store_object_nav'>
+                                        {% if '/store/objects/' in request.session.Authority_list %}
+                                            <li>
+                                                <a class='dropdown-collapse store_module_object' href='#'>
+                                                    <i class='icon-puzzle-piece'></i>
+                                                    <span>对象</span>
+                                                    <i class='icon-angle-down angle-down'></i>
+                                                </a>
+                                                <ul class='nav nav-stacked store_module_object_nav'>
+                                                    <li>
+                                                        <a class='' href='{% url 'Store' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>Store</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'PartLive' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>PartLive</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'StoreConPartLive' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>StoreConPartLive</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'StoreCon' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>StoreCon</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'Store_Status' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>Store_Status</span>
+
+                                                        </a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a class='' href='{% url 'Form_Status' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>Form_Status</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'StoreForm' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>StoreForm</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'StoreFormConPartLive' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>StoreFormConPartLive</span>
+
+                                                        </a>
+                                                    </li>
+
+                                                </ul>
+                                            </li>
+                                        {% endif %}
+                                        {% if '/store/Store_CRUD_Interface/' in request.session.Authority_list %}
+                                            <li>
+                                                <a class='' href='{% url 'Store_CRUD_Interface' %}'>
+                                                    <i class='icon-puzzle-piece'></i>
+                                                    <span>接口管理</span>
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                        {% if '/store/Store_Interface/' in request.session.Authority_list %}
+                                            <li>
+                                                <a class='' href='{% url 'Store_Interface' %}'>
+                                                    <i class='icon-puzzle-piece'></i>
+                                                    <span>接口测试</span>
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                        {% if '/store/CG_F/' in request.session.Authority_list %}
+                                            <li>
+                                                <a class='dropdown-collapse store_module_function' href='#'>
+                                                    <i class='icon-puzzle-piece'></i>
+                                                    <span>功能CG-F</span>
+                                                    <i class='icon-angle-down angle-down'></i>
+                                                </a>
+                                                <ul class='nav nav-stacked store_module_function_nav'>
+                                                    <li>
+                                                        <a class='' href='{% url 'Store_PutIn' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>入库存01-01</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'Store_PutInTemp' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>入临时库存02-01</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'Store_Stock' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>获取库存量01-02</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'Store_StockTemp' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>获取临时库存量02-02</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'edit_PartLive' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>编辑物料02-02</span>
+
+                                                        </a>
+                                                    </li>
+
+                                                </ul>
+                                            </li>
+                                        {% endif %}
+                                        {% if '/store/CG_R/' in request.session.Authority_list %}
+                                            <li>
+                                                <a class='dropdown-collapse store_module_job' href='#'>
+                                                    <i class='icon-puzzle-piece'></i>
+                                                    <span>职能CG-R</span>
+                                                    <i class='icon-angle-down angle-down'></i>
+                                                </a>
+                                                <ul class='nav nav-stacked store_module_job_nav'>
+                                                    <li>
+                                                        <a class='' href='{% url 'Store_ReceiveTemp' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>收货01</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'Store_RefuseTemp' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>退货02</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'Store_Receive' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>入库03</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'Store_Remove' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>出货04</span>
+
+                                                        </a>
+                                                    </li>
+
+                                                </ul>
+                                            </li>
+                                        {% endif %}
+                                        {% if '/store/CG_T/' in request.session.Authority_list %}
+                                            <li>
+                                                <a class='dropdown-collapse store_module_forms' href='#'>
+                                                    <i class='icon-puzzle-piece'></i>
+                                                    <span>表单CG-T</span>
+                                                    <i class='icon-angle-down angle-down'></i>
+                                                </a>
+                                                <ul class='nav nav-stacked store_module_forms_nav'>
+                                                    <li>
+                                                        <a class='' href='{% url 'Store_001Order' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>送货单</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'Store_002Order' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>收货单</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'Store_003Order' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>领货单</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'Store_004Order' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>退货单</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'Store_005Order' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>送料单</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'Store_006Order' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>入库单</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'Store_007Order' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>领料单</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'Store_008Order' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>出库单</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'Store_009Order' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>盘库单</span>
+
+                                                        </a>
+                                                    </li>
+
+                                                </ul>
+                                            </li>
+                                        {% endif %}
+
+
+                                    </ul>
+
+                                </li>
+                            {% endif %}
+                            {% if '/hr/' in request.session.Authority_list %}
+                                <li>
+
+                                    <a href='#' onclick="GoUrl('/GanttMyProject',this);return false;">
+
+                                        <i class='icon-puzzle-piece'></i>
+
+                                        <span>人资模块</span>
+
+                                    </a>
+
+                                </li>
+                            {% endif %}
+
+
+                        </ul>
+
+                    </li>
+
+
+                    <li>
+
+                        <a class='dropdown-collapse my_system' href='#'>
+
+                            <i class='icon-cogs'></i>
+
+                            <span>系统设置</span>
+
+                            <i class='icon-angle-down angle-down'></i>
+
+                        </a>
+
+                        <ul class='nav nav-stacked my_system_nav'>
+
+                            {% if '/org/' in request.session.Authority_list %}
+                                <li>
+                                    <a class='dropdown-collapse org_module' href='#'>
+                                        <i class='icon-puzzle-piece'></i>
+                                        <span>组织机构</span>
+                                        <i class='icon-angle-down angle-down'></i>
+
+                                    </a>
+                                    <ul class='nav nav-stacked org_object_nav'>
+                                        {% if '/org/objects/' in request.session.Authority_list %}
+                                            <li>
+                                                <a class='dropdown-collapse org_module_object' href='#'>
+                                                    <i class='icon-puzzle-piece'></i>
+                                                    <span>对象</span>
+                                                    <i class='icon-angle-down angle-down'></i>
+                                                </a>
+                                                <ul class='nav nav-stacked org_module_object_nav'>
+                                                    <li>
+                                                        <a class='' href='{% url 'company' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>Company</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'department' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>Department</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'department_con' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>Department_Con</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'account_type' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>Account_Type</span>
+
+                                                        </a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a class='' href='{% url 'role' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>Role</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'user' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>User</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'authority_company' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>AuthorityCompany</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'authority_department' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>AuthorityDepartment</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'authority_role' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>AuthorityRole</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'authority_user' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>AuthorityUser</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'user_con_company' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>User_Con_Company</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'user_con_role' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>User_Con_Role</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'user_con_department' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>User_Con_Department</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'role_con_department' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>Role_Con_Department</span>
+
+                                                        </a>
+                                                    </li>
+
+                                                </ul>
+                                            </li>
+                                        {% endif %}
+                                        {% if '/org/Org_CRUD_Interface/' in request.session.Authority_list %}
+                                            <li>
+                                                <a class='' href='{% url 'Org_CRUD_Interface' %}'>
+                                                    <i class='icon-puzzle-piece'></i>
+                                                    <span>接口管理</span>
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                        {% if '/org/Org_Interface/' in request.session.Authority_list %}
+                                            <li>
+                                                <a class='' href='{% url 'Org_Interface' %}'>
+                                                    <i class='icon-puzzle-piece'></i>
+                                                    <span>接口测试</span>
+                                                </a>
+                                            </li>
+                                        {% endif %}
+
+
+                                        {% if '/org/ZG_F/' in request.session.Authority_list %}
+                                            <li>
+                                                <a class='dropdown-collapse org_module_function' href='#'>
+                                                    <i class='icon-puzzle-piece'></i>
+                                                    <span>功能ZG-F</span>
+                                                    <i class='icon-angle-down angle-down'></i>
+                                                </a>
+                                                <ul class='nav nav-stacked org_module_function_nav'>
+                                                    <li>
+                                                        <a class='' href='{% url 'set_role' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>设置岗位</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'set_department' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>设置部门</span>
+
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'set_department_con' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>设置组织机构</span>
+
+                                                        </a>
+                                                    </li>
+
+
+                                                </ul>
+                                            </li>
+                                        {% endif %}
+                                        {% if '/org/ZG_R/' in request.session.Authority_list %}
+                                            <li>
+                                                <a class='dropdown-collapse org_module_job' href='#'>
+                                                    <i class='icon-puzzle-piece'></i>
+                                                    <span>职能ZG-R</span>
+                                                    <i class='icon-angle-down angle-down'></i>
+                                                </a>
+                                                <ul class='nav nav-stacked org_module_job_nav'>
+                                                    <li>
+                                                        <a class='' href='{% url 'role_department' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>岗位-部门</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'user_profile' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>账户信息</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'user_role' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>账户-角色</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class='' href='{% url 'add_user' %}'>
+                                                            <i class='icon-puzzle-piece'></i>
+                                                            <span>添加账户</span>
+                                                        </a>
+                                                    </li>
+
+
+                                                </ul>
+                                            </li>
+                                        {% endif %}
+
+                                    </ul>
+
+                                </li>
+
+
+                            {% endif %}
+
+
+                            {% if '/org/ZG_F/' in request.session.Authority_list %}
+                                <li>
+                                    <a class='' href='{% url 'set_authority' %}'>
+                                        <i class='icon-puzzle-piece'></i>
+                                        <span>权限设置</span>
+                                    </a>
+                                </li>
+                            {% endif %}
+
+                            {% if '/org/ZG_F/' in request.session.Authority_list %}
+                                <li>
+                                    <a class='' href='{% url 'module_manage' %}'>
+                                        <i class='icon-puzzle-piece'></i>
+                                        <span>模块管理</span>
+                                    </a>
+                                </li>
+                            {% endif %}
+
+                        </ul>
+
+
+                    </li>
+                {% endif %}
+
+
+            </ul>
+        </div>
+    </nav>
+    <section id='content'>
+        <div class='container-fluid'>
+
+            <div class='row-fluid' id='content-wrapper'>
+
+                <div class='span12' id="main-content">
+                    {% block main-content %}{% endblock %}
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+</div>
+<!-- / jquery -->
+<script src={% static '/javascripts/jquery/jquery.min.js' %} type='text/javascript'></script>
+<!-- / jquery mobile events (for touch and slide) -->
+<script src={% static '/javascripts/plugins/mobile_events/jquery.mobile-events.min.js' %} type='text/javascript'></script>
+<!-- / jquery migrate (for compatibility with new jquery) -->
+<script src={% static '/javascripts/jquery/jquery-migrate.min.js' %} type='text/javascript'></script>
+<!-- / jquery ui -->
+<script src={% static '/javascripts/jquery_ui/jquery-ui.min.js' %} type='text/javascript'></script>
+<!-- / bootstrap -->
+<script src={% static '/javascripts/bootstrap/bootstrap.min.js' %} type='text/javascript'></script>
+<script src={% static '/javascripts/plugins/flot/excanvas.js' %} type='text/javascript'></script>
+<!-- / sparklines -->
+<script src={% static '/javascripts/plugins/sparklines/jquery.sparkline.min.js' %} type='text/javascript'></script>
+<!-- / flot charts -->
+<script src={% static '/javascripts/plugins/flot/flot.min.js' %} type='text/javascript'></script>
+<script src={% static '/javascripts/plugins/flot/flot.resize.js' %} type='text/javascript'></script>
+<script src={% static '/javascripts/plugins/flot/flot.pie.js' %} type='text/javascript'></script>
+<!-- / bootstrap switch -->
+<script src={% static '/javascripts/plugins/bootstrap_switch/bootstrapSwitch.min.js' %} type='text/javascript'></script>
+<!-- / fullcalendar -->
+<script src={% static '/javascripts/plugins/fullcalendar/fullcalendar.min.js' %} type='text/javascript'></script>
+<!-- / datatables -->
+<script src={% static '/javascripts/plugins/datatables/jquery.dataTables.min.js' %} type='text/javascript'></script>
+<script src={% static '/javascripts/plugins/datatables/jquery.dataTables.columnFilter.js' %} type='text/javascript'></script>
+<!-- / wysihtml5 -->
+<script src={% static '/javascripts/plugins/common/wysihtml5.min.js' %} type='text/javascript'></script>
+<script src={% static '/javascripts/plugins/common/bootstrap-wysihtml5.js' %} type='text/javascript'></script>
+<!-- / select2 -->
+<script src={% static '/javascripts/plugins/select2/select2.js' %} type='text/javascript'></script>
+<!-- / color picker -->
+<script src={% static '/javascripts/plugins/bootstrap_colorpicker/bootstrap-colorpicker.min.js' %} type='text/javascript'></script>
+<!-- / mention -->
+<script src={% static '/javascripts/plugins/mention/mention.min.js' %} type='text/javascript'></script>
+<!-- / input mask -->
+<script src={% static '/javascripts/plugins/input_mask/bootstrap-inputmask.min.js' %} type='text/javascript'></script>
+<!-- / fileinput -->
+<script src={% static '/javascripts/plugins/fileinput/bootstrap-fileinput.js' %} type='text/javascript'></script>
+<!-- / modernizr -->
+<script src={% static '/javascripts/plugins/modernizr/modernizr.min.js' %} type='text/javascript'></script>
+<!-- / retina -->
+<!-- <script src={% static '/javascripts/plugins/retina/retina.js' %} type='text/javascript'></script> -->
+
+<!-- / fileupload -->
+<script src={% static '/javascripts/plugins/fileupload/tmpl.min.js' %} type='text/javascript'></script>
+<script src={% static '/javascripts/plugins/fileupload/load-image.min.js' %} type='text/javascript'></script>
+<script src={% static '/javascripts/plugins/fileupload/canvas-to-blob.min.js' %} type='text/javascript'></script>
+<script src={% static '/javascripts/plugins/fileupload/jquery.iframe-transport.min.js' %} type='text/javascript'></script>
+<script src={% static '/javascripts/plugins/fileupload/jquery.fileupload.min.js' %} type='text/javascript'></script>
+<script src={% static '/javascripts/plugins/fileupload/jquery.fileupload-fp.min.js' %} type='text/javascript'></script>
+<script src={% static '/javascripts/plugins/fileupload/jquery.fileupload-ui.min.js' %} type='text/javascript'></script>
+<script src={% static '/javascripts/plugins/fileupload/jquery.fileupload-init.js' %} type='text/javascript'></script>
+<!-- / timeago -->
+<script src={% static '/javascripts/plugins/timeago/jquery.timeago.js' %} type='text/javascript'></script>
+<!-- / slimscroll -->
+<script src={% static '/javascripts/plugins/slimscroll/jquery.slimscroll.min.js' %} type='text/javascript'></script>
+<!-- / autosize (for textareas) -->
+<script src={% static '/javascripts/plugins/autosize/jquery.autosize-min.js' %} type='text/javascript'></script>
+<!-- / charCount -->
+<script src={% static '/javascripts/plugins/charCount/charCount.js' %} type='text/javascript'></script>
+<!-- / validate -->
+<script src={% static '/javascripts/plugins/validate/jquery.validate.min.js' %} type='text/javascript'></script>
+<script src={% static '/javascripts/plugins/validate/additional-methods.js' %} type='text/javascript'></script>
+<!-- / naked password -->
+<script src={% static '/javascripts/plugins/naked_password/naked_password-0.2.4.min.js' %} type='text/javascript'></script>
+<!-- / nestable -->
+<script src={% static '/javascripts/plugins/nestable/jquery.nestable.js' %} type='text/javascript'></script>
+<!-- / tabdrop -->
+<script src={% static '/javascripts/plugins/tabdrop/bootstrap-tabdrop.js' %} type='text/javascript'></script>
+<!-- / jgrowl -->
+<script src={% static '/javascripts/plugins/jgrowl/jquery.jgrowl.min.js' %} type='text/javascript'></script>
+<!-- / bootbox -->
+<script src={% static '/javascripts/plugins/bootbox/bootbox.min.js' %} type='text/javascript'></script>
+<!-- / inplace editing -->
+<script src={% static '/javascripts/plugins/xeditable/bootstrap-editable.min.js' %} type='text/javascript'></script>
+<script src={% static '/javascripts/plugins/xeditable/wysihtml5.js' %} type='text/javascript'></script>
+<!-- / ckeditor -->
+<script src={% static '/javascripts/plugins/ckeditor/ckeditor.js' %} type='text/javascript'></script>
+<!-- / filetrees -->
+<script src={% static '/javascripts/plugins/dynatree/jquery.dynatree.min.js' %} type='text/javascript'></script>
+<!-- / datetime picker -->
+<script src={% static '/javascripts/plugins/bootstrap_datetimepicker/bootstrap-datetimepicker.js' %} type='text/javascript'></script>
+<!-- / daterange picker -->
+<script src={% static '/javascripts/plugins/bootstrap_daterangepicker/moment.min.js' %} type='text/javascript'></script>
+<script src={% static '/javascripts/plugins/bootstrap_daterangepicker/bootstrap-daterangepicker.js' %} type='text/javascript'></script>
+<!-- / max length -->
+<script src={% static '/javascripts/plugins/bootstrap_maxlength/bootstrap-maxlength.min.js' %} type='text/javascript'></script>
+<!-- / dropdown hover -->
+<script src={% static '/javascripts/plugins/bootstrap_hover_dropdown/twitter-bootstrap-hover-dropdown.min.js' %} type='text/javascript'></script>
+<!-- / slider nav (address book) -->
+<script src={% static '/javascripts/plugins/slider_nav/slidernav-min.js' %} type='text/javascript'></script>
+<!-- / fuelux -->
+<script src={% static '/javascripts/plugins/fuelux/wizard.js' %} type='text/javascript'></script>
+<!-- / flatty theme -->
+<script src={% static '/javascripts/nav.js' %} type='text/javascript'></script>
+<script src={% static '/javascripts/tables.js' %} type='text/javascript'></script>
+<script src={% static '/javascripts/theme.js' %} type='text/javascript'></script>
+<script src={% static '/javascripts/jquery.cookie.js' %} type='text/javascript'></script>
+<script src={% static '/javascripts/jquery.jOrgChart.js' %} type='text/javascript'></script>
+<!-- / demo -->
+<script src={% static '/javascripts/demo/jquery.mockjax.js' %} type='text/javascript'></script>
+<script src={% static '/javascripts/demo/inplace_editing.js' %} type='text/javascript'></script>
+<script src={% static '/javascripts/demo/charts.js' %} type='text/javascript'></script>
+<script src={% static '/javascripts/demo/demo.js' %} type='text/javascript'></script>
+<script src={% static '/javascripts/ients/ients_common.js' %} type='text/javascript'></script>
+<script src={% static '/javascripts/ients/ients_frontend.js' %} type='text/javascript'></script>
+<script src={% static '/javascripts/ients/ients_functions.js' %} type='text/javascript'></script>
+<!-- 扩展js -->
+{% block js %}{% endblock %}
+</body>
+</html>

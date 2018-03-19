@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+
+{% block main-content %}
+
+    <div class='span12'>
+        <div class='page-header'>
+            <h1 class='pull-left'>
+                <i class='icon-user'></i>
+                <span>User profile</span>
+            </h1>
+            <div class='pull-right'>
+                <ul class='breadcrumb'>
+                    <li>
+                        <a href="index.html"><i class='icon-bar-chart'></i>
+                        </a>
+                    </li>
+                    <li class='separator'>
+                        <i class='icon-angle-right'></i>
+                    </li>
+                    <li>Example pages</li>
+                    <li class='separator'>
+                        <i class='icon-angle-right'></i>
+                    </li>
+                    <li class='active'>User profile</li>
+                </ul>
+            </div>
+        </div>
+        <div class='row-fluid'>
+            <div class='span3 box'>
+                <div class='box-content'>
+                    <img alt="230x230&amp;text=photo" src="{% static request.session.User_Avatar %}"/>
+                    <input type="file" id="i1"/>
+                    <button>
+                        <a onclick="upload();">上传</a>
+                    </button>
+
+                    <div id="container"></div>
+                </div>
+            </div>
+            <div class='span9 box'>
+                <div class='box-content box-double-padding'>
+
+                    <fieldset>
+                        <div class='span2'>
+                            <div class='lead'>
+                                <i class='icon-signin text-contrast'></i>
+                                Login info
+                            </div>
+                            <small class='muted'>更新登陆信息</small>
+                        </div>
+                        <div class='span7 offset1'>
+                            <div class='control-group'>
+                                <label class='control-label'>Username</label>
+                                <div class='controls'>
+                                    <input class='span12' name='username' placeholder='Username' type='text'
+                                           value="{{ User_objs.username }}"/>
+                                </div>
+                            </div>
+                            <div class='control-group'>
+                                <label class='control-label'>E-mail</label>
+                                <div class='controls'>
+                                    <input class='span12' name='email' placeholder='E-mail' type='text'
+                                           value="{{ User_objs.email }}"/>
+                                </div>
+                            </div>
+
+                            <hr class='hr-normal'/>
+                            <div class='control-group'>
+                                <div class='controls'>
+                                    <label class='checkbox'>
+                                        <input data-target='#change-password' data-toggle='collapse'
+                                               id='changepasswordcheck' type='checkbox' value='option1'/>
+                                        Change password?
+                                    </label>
+                                </div>
+                            </div>
+                            <div class='collapse' id='change-password'>
+                                <div class='control-group'>
+                                    <label class='control-label'>Password</label>
+                                    <div class='controls'>
+                                        <input class='span12' name='password' placeholder='Password' type='password'/>
+                                    </div>
+                                </div>
+                                <div class='control-group'>
+                                    <label class='control-label'>Password confirmation</label>
+                                    <div class='controls'>
+                                        <input class='span12' name='password2'
+                                               placeholder='Password confirmation' type='password'/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <hr class='hr-normal'/>
+                    <fieldset>
+                        <div class='span2 box'>
+                            <div class='lead'>
+                                <i class='icon-user text-contrast'></i>
+                                Personal info
+                            </div>
+                            <small class='muted'>更新个人属性</small>
+                        </div>
+                        <div class='span7 offset1'>
+                            <div class='control-group'>
+                                <label class='control-label'>手机号码</label>
+                                <div class='controls'>
+                                    <input class='span12' name='Phone_Number' placeholder='Phone Number' type='text'
+                                           value="{{ User_objs.Phone_Number }}"/>
+                                </div>
+                            </div>
+                            <div class='control-group'>
+                                <label class='control-label'>工号 (readonly)</label>
+                                <div class='controls'>
+
+                                    <input class='span12' name='Job_Number' placeholder='Job Number' type='text'
+                                           disabled="true" value="{{ User_objs.Job_Number }}"/>
+                                </div>
+                            </div>
+                            <div class='control-group'>
+                                <label class='control-label'>界面颜色</label>
+                                <div class='controls'>
+                                    <input class='span12' name='Ui_Color' placeholder='Ui Color' type='text'
+                                           value="{{ User_objs.Ui_Color }}"/>
+                                </div>
+                            </div>
+
+                            <div class='control-group'>
+                                <label class='control-label'>界面缩放系数</label>
+                                <div class='controls'>
+                                    <input class='span12' name='Ui_Zoom' placeholder='Ui Zoom' type='text'
+                                           value="{{ User_objs.Ui_Zoom }}"/>
+                                </div>
+                            </div>
+                            <div class='control-group'>
+                                <label class='control-label'>设计系数</label>
+                                <div class='controls'>
+                                    <input class='span12' name='Design_Rate' placeholder='Design Rate' type='text'
+                                           value="{{ User_objs.Design_Rate }}"/>
+                                </div>
+                            </div>
+
+                        </div>
+                    </fieldset>
+                    <div class='form-actions' style='margin-bottom: 0;'>
+                        <div class='text-right'>
+                            <div class='btn btn-primary btn-large edit_org_user' style="margin-right: 90px">
+                                <i class='icon-save'></i>
+                                Save
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="text" style="display: none;" value="{{ User_objs.id }}" name="User_id">
+
+{% endblock %}
+
+{% block js %}
+    <script src={% static '/javascripts/ients/ients_org.js' %} type='text/javascript'></script>
+
+    <script>
+        function upload() {
+            var formData = new FormData();
+
+            formData.append('HeadPicture', $('#i1')[0].files[0]);
+
+            $.ajax({
+                url: '/general/upload_avatar/',
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (arg) {
+
+                    var tag = document.createElement('img');
+                    tag.src = arg;
+                    $('#container').append(tag);
+                }
+            })
+        }
+
+        user_profile()
+    </script>
+
+{% endblock %}

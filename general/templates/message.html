@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block main-content %}
+    <div>
+
+        <hr class='hr-double'/>
+        <h3 class="message"></h3>
+        <div class='row-fluid' id="table" style="display: none">
+            <div class='span12 box bordered-box orange-border'>
+                <div class='box-header red-background'>
+                    <div class='title'>
+                        Message管理
+                    </div>
+                    <div class='actions'>
+                        <a href="#" class="btn box-remove btn-mini btn-link"><i class='icon-remove'></i>
+                        </a>
+                        <a href="#" class="btn box-collapse btn-mini btn-link"><i></i>
+                        </a>
+                    </div>
+                    <!-- Button to trigger modal -->
+
+
+                    <a href="#myModal" role="button" class="btn add_btn" data-toggle="modal" style="margin-left: 60%"
+                    >添加</a>
+                </div>
+
+                <div class='box-content box-no-padding'>
+                    <div class='responsive-table'>
+                        <div class='scrollable-area'>
+
+                            <table class=' table table-bordered table-striped'>
+
+                                <thead class="table_title">
+
+                                </thead>
+
+                                <tbody class="table_data">
+
+                                </tbody>
+
+                            </table>
+
+
+                            <!-- Modal -->
+                            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"
+                                 aria-labelledby="myModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        ×
+                                    </button>
+                                    <h3 id="myModalLabel">操作</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="exampleInputNO">代码</label>
+                                        <input type="text" class="form-control" name="NO">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputContent">错误信息</label>
+                                        <input type="text" class="form-control" name="Content">
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn close_modal" data-dismiss="modal" aria-hidden="true">关闭</button>
+
+                                    <button class="btn btn-primary add_message">确认</button>
+                                    <button class="btn btn-primary edit_message" style="display: none">确认
+                                    </button>
+                                </div>
+                            </div>
+
+
+                            {% csrf_token %}
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}
+
+
+{% block js %}
+
+    <script src={% static '/javascripts/ients/ients_general.js' %} type='text/javascript'></script>
+
+
+    <script type='text/javascript'>
+
+        module_message()
+
+
+    </script>
+
+
+{% endblock %}

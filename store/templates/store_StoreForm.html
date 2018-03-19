@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block main-content %}
+
+
+    <div>
+        <hr class='hr-double'/>
+
+        <h3 class="message"></h3>
+        <div class='row-fluid' id="table" style="display: none">
+
+            <div class='span12 box bordered-box orange-border' style='margin-bottom:0;'>
+                <div class='box-header red-background'>
+                    <div class='title'>
+                        表单
+                    </div>
+                    <select name="Store_id" id="" style="margin-left: 10px">
+                        <option value="">---请选择仓库---</option>
+                        {% for row in Store_objs %}
+                            <option value="{{ row.id }}">{{ row.Status__Name }}--{{ row.Name }}</option>
+                        {% endfor %}
+                    </select>
+                    <button class="change_store" style="margin-left: 10px">
+                        确认
+                    </button>
+                    <select name="Status_id" id="" style="margin-left: 10px">
+                        <option value="">---请选择类型---</option>
+                        {% for row in Form_Status_objs %}
+                            <option value="{{ row.id }}">{{ row.Name }}</option>
+                        {% endfor %}
+                    </select>
+                    <button class="change_store" style="margin-left: 10px">
+                        确认
+                    </button>
+                    <div class='actions'>
+                        <a href="#" class="btn box-remove btn-mini btn-link"><i class='icon-remove'></i>
+                        </a>
+                        <a href="#" class="btn box-collapse btn-mini btn-link"><i></i>
+                        </a>
+                    </div>
+                    <!-- Button to trigger modal -->
+
+
+                    <a href="#myModal" role="button" class="btn add_btn" data-toggle="modal" style="margin-left: 25%"
+                    >添加</a>
+
+
+                </div>
+
+                <div class='box-content box-no-padding'>
+                    <div class='responsive-table'>
+                        <div class='scrollable-area'>
+
+                            <table class=' table table-bordered table-striped'
+                                   style='margin-bottom:0;'>
+                                <thead class="table_title">
+
+                                </thead>
+                                <tbody class="table_data">
+
+                                </tbody>
+
+                            </table>
+
+
+                            <!-- Modal -->
+                            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"
+                                 aria-labelledby="myModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        ×
+                                    </button>
+                                    <h3 id="myModalLabel">操作</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="exampleInputName">名称</label>
+                                        <input type="text" class="form-control" name="Name">
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="exampleInputStatus">表单类型</label>
+
+                                        <select name="Status_id_edit" id="">
+                                            {% for row in Form_Status_objs %}
+                                                <option value="{{ row.id }}">{{ row.Name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputOriginStore">所在仓库</label>
+
+                                        <select name="OriginStore_id_edit" id="">
+                                            {% for row in Store_objs %}
+                                                <option value="{{ row.id }}">{{ row.Status__Name }}--{{ row.Name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputTargetStore">目标仓库</label>
+
+                                        <select name="TargetStore_id" id="">
+                                            <option value=>----无----</option>
+                                            {% for row in Store_objs %}
+                                                <option value="{{ row.id }}">{{ row.Status__Name }}--{{ row.Name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn close_modal" data-dismiss="modal" aria-hidden="true">关闭
+                                    </button>
+
+
+                                    <button class="btn btn-primary add_storeform">确认</button>
+                                    <button class="btn btn-primary edit_storeform" style="display: none">确认</button>
+
+
+                                </div>
+                            </div>
+
+
+                            {% csrf_token %}
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+{% endblock %}
+
+
+{% block js %}
+    <script src={% static '/javascripts/ients/ients_store.js' %} type='text/javascript'></script>
+
+    <script type='text/javascript'>
+        store_form()
+
+
+    </script>
+
+{% endblock %}

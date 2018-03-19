@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+
+{% block main-content %}
+
+    <div>
+        <hr class='hr-double'/>
+        <h3 class="message"></h3>
+
+        <div class='row-fluid' id="table" style="display: none">
+
+            <div class='span12 box bordered-box orange-border' style='margin-bottom:0;'>
+                <div class='box-header red-background'>
+                    <div class='title'>
+                        用户列表管理
+                    </div>
+                    <div class='actions'>
+                        <a href="#" class="btn box-remove btn-mini btn-link"><i class='icon-remove'></i>
+                        </a>
+                        <a href="#" class="btn box-collapse btn-mini btn-link"><i></i>
+                        </a>
+                    </div>
+                    <!-- Button to trigger modal -->
+
+
+                </div>
+
+                <div class='box-content box-no-padding'>
+                    <div class='responsive-table'>
+                        <div class='scrollable-area'>
+
+                            <table class=' table table-bordered table-striped'
+                                   style='margin-bottom:0;'>
+                                <thead class="table_title">
+
+                                </thead>
+                                <tbody class="table_data">
+
+                                </tbody>
+
+                            </table>
+
+
+                            <!-- Modal -->
+                            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"
+                                 aria-labelledby="myModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        ×
+                                    </button>
+                                    <h3 id="myModalLabel">操作</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="exampleInputUserName">用户名</label>
+                                        <input type="text" class="form-control" name="username">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail">邮箱</label>
+                                        <input type="text" class="form-control" name="email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPhone_Number">电话号码</label>
+                                        <input type="text" class="form-control" name="Phone_Number">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputJob_Number">工号</label>
+                                        <input type="text" class="form-control" name="Job_Number">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputUi_Color">界面颜色</label>
+                                        <input type="text" class="form-control" name="Ui_Color">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputUi_Zoom">界面缩放系数</label>
+                                        <input type="text" class="form-control" name="Ui_Zoom">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputDesign_Rate">设计系数</label>
+                                        <input type="text" class="form-control" name="Design_Rate">
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn close_modal" data-dismiss="modal" aria-hidden="true">关闭
+                                    </button>
+
+                                    <button class="btn btn-primary add_org_user">确认</button>
+                                    <button class="btn btn-primary edit_org_user" style="display: none">确认</button>
+
+
+                                </div>
+                            </div>
+
+
+                            {% csrf_token %}
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block js %}
+    <script src={% static '/javascripts/ients/ients_org.js' %} type='text/javascript'></script>
+
+
+
+    <script type='text/javascript'>
+
+        org_user()
+
+
+    </script>
+
+
+
+{% endblock %}

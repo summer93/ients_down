@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block main-content %}
+
+    <div class='modal' id='modal-login' role='dialog'>
+
+        <div class='modal-header'>
+            <button class='close' data-dismiss='modal' type='button'>&times;</button>
+            <h3>用户登录</h3>
+        </div>
+        <div class='modal-body'>
+            <form class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label" for="inputName">用户名</label>
+                    <div class="controls">
+                        <input type="text" name="username" placeholder="Name">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputPassword">密码</label>
+                    <div class="controls">
+                        <input type="password" name="password" placeholder="Password">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="col-sm-2 control-label" for="inputCode">验证码</label>
+                    <div class="controls">
+                        <input type="text" name="code" placeholder="Code">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <img onclick="changeCode(this);" style="width: 120px;margin-left: 35%" src='{% url 'check_code' %}'>
+                    <span style="margin-left: 2%">点击刷新</span>
+                </div>
+
+                <div class="control-group">
+                    <div class="controls">
+                        <label class="checkbox">
+                            <input type="checkbox" value="2592000" name="save_time"> 记住我
+                            <a href='{% url 'user_register' %}' style="margin-left: 14%;color: red">没有账号注册</a>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label message"></label>
+                </div>
+            </form>
+
+            <button class='btn btn-primary submit' style="margin-left: 60%">登录</button>
+
+        </div>
+    </div>
+    {% csrf_token %}
+{% endblock %}
+
+{% block js %}
+    <script type='text/javascript'>
+
+        $(function () {
+
+
+            $('.submit').live('click', function () {
+                var username = $('[name="username"]').val();
+                var password = $('[name="password"]').val();
+                var code = $('[name="code"]').val();
+                var save_time = $('[name="save_time"]:checked').val();
+
+                var token = $.cookie('csrftoken');
+                var val = {
+                    'username': username,
+                    'password': password,
+                    'code':code,
+                    'save_time': save_time
+                };
+                $.ajax({
+                    url: '{% url "user_login" %}',
+                    type: 'post',
+                    tradition: true,
+                    headers: {'X-CSRFToken': token},
+                    data: JSON.stringify(val),
+                    success: function (arg) {
+                        $('.message').text('');
+                        if (arg.status) {
+                            location.href = arg.next_url
+
+                        } else if (arg.errors) {
+                            if (arg.errors.username) {
+                                $('[name="username"]').attr('placeholder', arg.errors.username[0].message);
+                            } else if (arg.errors.password) {
+                                $('[name="password"]').attr('placeholder', arg.errors.password[0].message);
+                            }
+                        } else if (arg.message) {
+
+                            $('.message').text(arg.message);
+                        }
+                    }
+                })
+
+
+            })
+
+
+        });
+        function changeCode(ths) {
+            ths.src=ths.src + '?'
+        }
+
+    </script>
+{% endblock %}
+
